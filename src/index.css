@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+.animate-marquee { display:flex; animation: marquee 17s linear infinite; }
+
+.dark .animate-marquee span {
+  color: #e4e4e7;
+}
+
+.dark span.bg-\[\#03e312\] {
+  background-color: #03e312 !important;
+  color: #fff !important;
+}
+
+.dot { display:inline-block; }

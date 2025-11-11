@@ -38,8 +38,8 @@ export default function Header() {
           <a href="/" className="hover:text-[#167c48] transition">Home</a>
           <a href="/berita" className="hover:text-[#167c48] transition">Berita</a>
           <a href="/berita?kategori=opini" className="hover:text-[#167c48] transition">Opini</a>
-          <a href="/redaksi" className="hover:text-[#167c48] transition">Redaksi</a>
           <a href="/berita?kategori=kampus" className="hover:text-[#167c48] transition">Kampus</a>
+          <a href="/redaksi" className="hover:text-[#167c48] transition">Redaksi</a>
           <a href="/kontak" className="hover:text-[#167c48] transition">Kontak</a>
         </nav>
 
@@ -80,8 +80,8 @@ export default function Header() {
           <a href="/" className="block hover:text-[#167c48] transition">Home</a>
           <a href="/berita" className="block hover:text-[#167c48] transition">Berita</a>
           <a href="/berita?kategori=opini" className="block hover:text-[#167c48] transition">Opini</a>
-          <a href="/redaksi" className="block hover:text-[#167c48] transition">Redaksi</a>
           <a href="/berita?kategori=kampus" className="block hover:text-[#167c48] transition">Kampus</a>
+          <a href="/redaksi" className="block hover:text-[#167c48] transition">Redaksi</a>
           <a href="/kontak" className="block hover:text-[#167c48] transition">Kontak</a>
         </div>
       )}

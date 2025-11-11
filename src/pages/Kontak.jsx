@@ -49,13 +49,11 @@ export default function Kontak() {
       <Breakingnews />
       <Header />
 
-      {/* Bagian utama */}
       <div className="bg-gray-50 dark:bg-black min-h-screen text-gray-800 dark:text-gray-100 px-6 md:px-20 py-10">
-        {/* Tombol kembali */}
         <div className="max-w-5xl mx-auto mb-6">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 dark:border-gray-700 hover:bg-[#03e312]/10 text-gray-700 dark:text-gray-300 transition"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 dark:border-gray-700 hover:bg-[#167c48]/10 text-gray-700 dark:text-gray-300 transition"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -71,19 +69,16 @@ export default function Kontak() {
           </Link>
         </div>
 
-        {/* Judul halaman */}
         <div className="text-center mb-10">
           <h1 className="text-3xl md:text-4xl font-bold mb-2">
-            Hubungi <span className="text-[#03e312]">Kami</span>
+            Hubungi <span className="text-[#167c48]">Kami</span>
           </h1>
           <p className="text-gray-500 dark:text-gray-400">
             Jika ada pertanyaan, saran, atau kerja sama, jangan ragu untuk mengirim pesan.
           </p>
         </div>
 
-        {/* Grid 2 kolom: form + info */}
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10">
-          {/* Formulir kontak */}
           <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-8">
             <h2 className="text-xl font-semibold mb-4 text-black dark:text-white">
               Kirim Pesan
@@ -92,28 +87,28 @@ export default function Kontak() {
               <input
                 type="text"
                 placeholder="Nama Lengkap"
-                className="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-transparent text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-[#03e312]"
+                className="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-transparent text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-[#167c48]"
                 value={nama}
                 onChange={(e) => setNama(e.target.value)}
               />
               <input
                 type="email"
                 placeholder="Alamat Email"
-                className="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-transparent text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-[#03e312]"
+                className="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-transparent text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-[#167c48]"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
               <textarea
                 placeholder="Pesan Anda..."
                 rows="5"
-                className="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-transparent text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-[#03e312]"
+                className="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-transparent text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-[#167c48]"
                 value={pesan}
                 onChange={(e) => setPesan(e.target.value)}
               ></textarea>
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-[#03e312] text-white font-semibold py-2 rounded hover:bg-[#02c20f] transition disabled:opacity-50"
+                className="w-full bg-[#167c48] text-white font-semibold py-2 rounded hover:bg-[#02c20f] transition disabled:opacity-50"
               >
                 {loading ? "Mengirim..." : "Kirim Pesan"}
               </button>
@@ -130,15 +125,14 @@ export default function Kontak() {
             )}
           </div>
 
-          {/* Informasi kontak */}
           <div className="flex flex-col justify-center space-y-6">
             <div>
               <h3 className="text-lg font-semibold text-black dark:text-white mb-2">
-                Alamat Redaksi
+                Alamat 
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Gedung UKM Lt. 2, Universitas Islam Ibrahimy Banyuwangi<br />
-                Jl. Jember No. 123, Kabat, Banyuwangi
+                Jl. KH. Hasyim Asy'ari No.01, Dusun Krajan, Kembiritan<br />
+                Kec. Genteng, Kabupaten Banyuwangi, Jawa Timur 68465
               </p>
             </div>
 
@@ -146,15 +140,15 @@ export default function Kontak() {
               <h3 className="text-lg font-semibold text-black dark:text-white mb-2">
                 Email
               </h3>
-              <p className="text-gray-600 dark:text-gray-400">lpmelmizna@gmail.com</p>
+              <p className="text-gray-600 dark:text-gray-400">penuliselmizna25@gmail.com</p>
             </div>
 
             <div>
               <h3 className="text-lg font-semibold text-black dark:text-white mb-2">
                 Media Sosial
               </h3>
-              <div className="flex gap-4 text-[#03e312] text-2xl">
-                <a href="#" className="hover:scale-110 transition">
+              <div className="flex gap-4 text-[#167c48] text-2xl">
+                <a href="https://www.instagram.com/lpm_elmizna" className="hover:scale-110 transition">
                   <i className="ri-instagram-fill"></i>
                 </a>
                 <a href="#" className="hover:scale-110 transition">

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Preloader from "../components/Preloader";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
@@ -13,10 +13,17 @@ export default function AllNews() {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
 
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const kategoriFilter = queryParams.get("kategori");
+
   useEffect(() => {
     fetchCategories();
-    fetchAllNews();
   }, []);
+
+  useEffect(() => {
+    fetchAllNews();
+  }, [kategoriFilter]);
 
   async function fetchCategories() {
     const { data, error } = await supabase.from("kategori").select("id, name");
@@ -29,26 +36,54 @@ export default function AllNews() {
     setCategories(map);
   }
 
+  function getKategoriName(id) {
+    return categories[id] || "Umum";
+  }
+
   async function fetchAllNews() {
-    const { data, error } = await supabase
+    setLoading(true);
+
+    const { data: beritaData, error: beritaError } = await supabase
       .from("berita")
       .select("*")
       .order("created_at", { ascending: false });
-    if (error) {
-      console.error("Gagal ambil berita:", error.message);
-    } else {
-      setBerita(data);
+
+    if (beritaError) {
+      console.error("Gagal ambil berita:", beritaError.message);
+      setLoading(false);
+      return;
     }
+
+    const { data: kategoriData, error: kategoriError } = await supabase
+      .from("kategori")
+      .select("id, name");
+
+    if (kategoriError) {
+      console.error("Gagal ambil kategori:", kategoriError.message);
+      setLoading(false);
+      return;
+    }
+
+    const kategoriMap = {};
+    kategoriData.forEach((k) => (kategoriMap[k.id] = k.name));
+    setCategories(kategoriMap);
+
+    let filtered = beritaData;
+    if (kategoriFilter) {
+      const kategoriLower = kategoriFilter.toLowerCase();
+      filtered = beritaData.filter((item) => {
+        const namaKategori = kategoriMap[item.category_id]?.toLowerCase();
+        return namaKategori === kategoriLower;
+      });
+    }
+
+    setBerita(filtered);
     setLoading(false);
   }
 
   const filteredNews = berita.filter((item) =>
     item.title.toLowerCase().includes(search.toLowerCase())
   );
-
-  function getKategoriName(id) {
-    return categories[id] || "Umum";
-  }
 
   if (loading)
     return (
@@ -68,21 +103,26 @@ export default function AllNews() {
           <div className="max-w-6xl mx-auto mb-6">
             <Link
               to="/"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 dark:border-gray-700 hover:bg-[#03e312]/10 text-gray-700 dark:text-gray-300 transition">
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 dark:border-gray-700 hover:bg-[#167c48]/10 text-gray-700 dark:text-gray-300 transition"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={2}
                 stroke="currentColor"
-                className="w-5 h-5">
+                className="w-5 h-5"
+              >
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
               </svg>
               Kembali ke Home
             </Link>
           </div>
+
           <h1 className="text-3xl font-bold mb-8 text-black dark:text-white text-center">
-            Semua Berita
+            {kategoriFilter
+              ? `Berita ${kategoriFilter.charAt(0).toUpperCase() + kategoriFilter.slice(1)}`
+              : "Semua Berita"}
           </h1>
 
           <div className="flex justify-center mb-10">
@@ -91,7 +131,7 @@ export default function AllNews() {
               placeholder="Cari berita..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full md:w-1/2 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#03e312] dark:bg-gray-800 dark:text-white"
+              className="w-full md:w-1/2 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#167c48] dark:bg-gray-800 dark:text-white"
             />
           </div>
 
@@ -117,27 +157,24 @@ export default function AllNews() {
                         />
                       </div>
                       <div className="p-4">
-                        <span className="bg-[#03e312] text-white text-xs px-2 py-1 rounded mb-2 inline-block">
+                        <span className="bg-[#167c48] text-white text-xs px-2 py-1 rounded mb-2 inline-block">
                           {getKategoriName(item.category_id)}
                         </span>
-                        <h3 className="text-base font-semibold leading-snug text-black dark:text-white group-hover:text-[#03e312] transition-colors duration-300">
+                        <h3 className="text-base font-semibold leading-snug text-black dark:text-white group-hover:text-[#167c48] transition-colors duration-300">
                           {item.title}
                         </h3>
                         <div className="flex items-center mt-3 text-xs text-gray-600 dark:text-gray-300 gap-4">
                           <span className="flex items-center gap-1">
-                            <i className="ri-user-line text-[#03e312]"></i>{" "}
+                            <i className="ri-user-line text-[#167c48]"></i>{" "}
                             {item.author || "Redaksi"}
                           </span>
                           <span className="flex items-center gap-1">
-                            <i className="ri-calendar-line text-[#03e312]"></i>{" "}
-                            {new Date(item.created_at).toLocaleDateString(
-                              "id-ID",
-                              {
-                                day: "2-digit",
-                                month: "short",
-                                year: "numeric",
-                              }
-                            )}
+                            <i className="ri-calendar-line text-[#167c48]"></i>{" "}
+                            {new Date(item.created_at).toLocaleDateString("id-ID", {
+                              day: "2-digit",
+                              month: "short",
+                              year: "numeric",
+                            })}
                           </span>
                         </div>
                       </div>

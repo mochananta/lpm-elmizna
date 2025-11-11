@@ -44,12 +44,11 @@ export default function SearchResults() {
       <Breakingnews />
       <Header />
 
-      {/* 🔹 Warna latar dan struktur sama persis dengan AllNews */}
       <div className="bg-gray-50 dark:bg-black">
         <section className="container mx-auto px-6 md:px-10 py-10">
           <h1 className="text-3xl font-bold mb-8 text-black dark:text-white text-center">
             Hasil Pencarian untuk:{" "}
-            <span className="text-[#03e312]">“{query}”</span>
+            <span className="text-[#167c48]">“{query}”</span>
           </h1>
 
           <div className="grid lg:grid-cols-3 gap-10">
@@ -74,16 +73,16 @@ export default function SearchResults() {
                         />
                       </div>
                       <div className="p-4">
-                        <h3 className="text-base font-semibold leading-snug text-black dark:text-white group-hover:text-[#03e312] transition-colors duration-300">
+                        <h3 className="text-base font-semibold leading-snug text-black dark:text-white group-hover:text-[#167c48] transition-colors duration-300">
                           {item.title}
                         </h3>
                         <div className="flex items-center mt-3 text-xs text-gray-600 dark:text-gray-300 gap-4">
                           <span className="flex items-center gap-1">
-                            <i className="ri-user-line text-[#03e312]"></i>{" "}
+                            <i className="ri-user-line text-[#167c48]"></i>{" "}
                             {item.author || "Redaksi"}
                           </span>
                           <span className="flex items-center gap-1">
-                            <i className="ri-calendar-line text-[#03e312]"></i>{" "}
+                            <i className="ri-calendar-line text-[#167c48]"></i>{" "}
                             {new Date(item.created_at).toLocaleDateString(
                               "id-ID",
                               {

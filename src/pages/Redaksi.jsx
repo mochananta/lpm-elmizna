@@ -29,7 +29,7 @@ export default function Redaksi() {
         <div className="max-w-6xl mx-auto mb-6">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 dark:border-gray-700 hover:bg-[#03e312]/10 text-gray-700 dark:text-gray-300 transition"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 dark:border-gray-700 hover:bg-[#167c48]/10 text-gray-700 dark:text-gray-300 transition"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +51,7 @@ export default function Redaksi() {
           </h2>
           <h1 className="text-3xl md:text-4xl font-bold mt-2">
             Pengurus UKM Pers El Mizna <br />
-            <span className="text-[#03e312]">
+            <span className="text-[#167c48]">
               Universitas Islam Ibrahimy Banyuwangi
             </span>
           </h1>
@@ -64,7 +64,7 @@ export default function Redaksi() {
               key={index}
               className="bg-white dark:bg-gray-900 rounded-2xl shadow hover:shadow-lg transition p-6 flex flex-col items-center text-center relative"
             >
-              <div className="w-28 h-28 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 border-2 border-[#03e312]/70 mb-4">
+              <div className="w-28 h-28 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 border-2 border-[#167c48]/70 mb-4">
                 <img
                   src="https://cdn-icons-png.flaticon.com/512/9001/9001859.png"
                   alt="Admin Icon"

@@ -18,7 +18,7 @@ export default function Preloader() {
       id="preloader"
       className="fixed inset-0 flex items-center justify-center bg-white dark:bg-black z-[9999] transition-opacity duration-500"
     >
-      <div className="animate-spin rounded-full h-12 w-12 border-4 border-[#03e312] border-t-transparent" />
+      <div className="animate-spin rounded-full h-12 w-12 border-4 border-[#167c48] border-t-transparent" />
     </div>
   );
 }

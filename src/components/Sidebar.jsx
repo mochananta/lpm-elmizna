@@ -92,7 +92,7 @@ export default function Sidebar() {
     <aside className="space-y-8">
       <div>
         <h3 className="flex items-center text-xl font-semibold border-b border-gray-200 dark:border-gray-800 pb-2 mb-4 uppercase text-black dark:text-white">
-          <i className="fa-solid fa-fire text-[#03e312] mr-2"></i> Popular Posts
+          <i className="fa-solid fa-fire text-[#167c48] mr-2"></i> Popular Posts
         </h3>
         {popularPosts.length === 0 ? (
           <p className="text-gray-500 text-sm">Belum ada berita.</p>
@@ -109,7 +109,7 @@ export default function Sidebar() {
                     className="w-16 h-12 object-cover rounded-lg shadow-sm group-hover:scale-105 transition-transform"
                     alt={post.title}
                   />
-                  <span className="text-black dark:text-white group-hover:text-[#03e312] font-medium line-clamp-2">
+                  <span className="text-black dark:text-white group-hover:text-[#167c48] font-medium line-clamp-2">
                     {post.title}
                   </span>
                 </Link>
@@ -130,7 +130,7 @@ export default function Sidebar() {
             {categories.map((k) => (
               <span
                 key={k.id}
-                className="bg-[#03e312]/10 text-[#03e312] px-3 py-1 rounded-full text-sm cursor-pointer hover:bg-[#03e312]/20 transition"
+                className="bg-[#167c48]/10 text-[#167c48] px-3 py-1 rounded-full text-sm cursor-pointer hover:bg-[#167c48]/20 transition"
               >
                 {k.name}
               </span>
@@ -139,7 +139,7 @@ export default function Sidebar() {
         )}
       </div>
 
-      <div className="bg-[#03e312] text-white rounded-xl p-5 shadow-lg">
+      <div className="bg-[#167c48] text-white rounded-xl p-5 shadow-lg">
         <h3 className="text-lg font-semibold mb-2">Berlangganan Berita</h3>
         <p className="text-sm mb-3 text-white/80">
           Dapatkan berita terbaru langsung ke email Anda.
@@ -199,7 +199,7 @@ export default function Sidebar() {
           <button
             type="submit"
             disabled={sending}
-            className="w-full bg-[#03e312] text-white font-semibold rounded py-2 hover:bg-[#02c50f] transition disabled:opacity-50"
+            className="w-full bg-[#167c48] text-white font-semibold rounded py-2 hover:bg-[#02c50f] transition disabled:opacity-50"
           >
             {sending ? "Mengirim..." : "Kirim Pesan"}
           </button>

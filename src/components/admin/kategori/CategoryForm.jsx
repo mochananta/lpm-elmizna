@@ -31,7 +31,7 @@ export default function CategoryForm({ onRefresh }) {
         />
         <button
           type="submit"
-          className="bg-[#03e312] text-white px-4 py-2 rounded font-semibold hover:bg-[#02c10f]"
+          className="bg-[#167c48] text-white px-4 py-2 rounded font-semibold hover:bg-[#02c10f]"
         >
           Simpan
         </button>

@@ -82,7 +82,7 @@ export default function NewsForm({ onRefresh }) {
       onSubmit={handleSubmit}
       className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow mb-6"
     >
-      <h2 className="text-xl font-bold mb-4 text-[#03e312]">Tambah Berita</h2>
+      <h2 className="text-xl font-bold mb-4 text-[#167c48]">Tambah Berita</h2>
 
       <div className="grid grid-cols-2 gap-4">
         <input
@@ -131,7 +131,7 @@ export default function NewsForm({ onRefresh }) {
       <button
         type="submit"
         disabled={uploading}
-        className="mt-4 px-4 py-2 bg-[#03e312] text-white rounded font-semibold hover:bg-[#02c10f] transition disabled:opacity-50"
+        className="mt-4 px-4 py-2 bg-[#167c48] text-white rounded font-semibold hover:bg-[#02c10f] transition disabled:opacity-50"
       >
         {uploading ? "Mengunggah..." : "Simpan"}
       </button>

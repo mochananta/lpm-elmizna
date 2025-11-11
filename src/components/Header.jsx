@@ -35,12 +35,12 @@ export default function Header() {
         </div>
 
         <nav className="hidden md:flex items-center space-x-8 font-medium">
-          <a href="/" className="hover:text-[#03e312] transition">Home</a>
-          <a href="/berita" className="hover:text-[#03e312] transition">Berita</a>
-          <a href="#" className="hover:text-[#03e312] transition">Opini</a>
-          <a href="/redaksi" className="hover:text-[#03e312] transition">Redaksi</a>
-          <a href="#" className="hover:text-[#03e312] transition">Kampus</a>
-          <a href="/kontak" className="hover:text-[#03e312] transition">Kontak</a>
+          <a href="/" className="hover:text-[#167c48] transition">Home</a>
+          <a href="/berita" className="hover:text-[#167c48] transition">Berita</a>
+          <a href="/berita?kategori=opini" className="hover:text-[#167c48] transition">Opini</a>
+          <a href="/redaksi" className="hover:text-[#167c48] transition">Redaksi</a>
+          <a href="/berita?kategori=kampus" className="hover:text-[#167c48] transition">Kampus</a>
+          <a href="/kontak" className="hover:text-[#167c48] transition">Kontak</a>
         </nav>
 
         <div className="flex items-center space-x-3">
@@ -51,7 +51,7 @@ export default function Header() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               onKeyDown={handleSearchKey}
-              className="border border-gray-300 dark:border-gray-700 rounded-full pl-4 pr-10 py-2 text-sm w-48 md:w-64 bg-gray-50 dark:bg-gray-800 focus:ring-2 focus:ring-[#03e312] focus:outline-none transition"
+              className="border border-gray-300 dark:border-gray-700 rounded-full pl-4 pr-10 py-2 text-sm w-48 md:w-64 bg-gray-50 dark:bg-gray-800 focus:ring-2 focus:ring-[#167c48] focus:outline-none transition"
             />
             <img
               src="https://cdn-icons-png.flaticon.com/512/622/622669.png"
@@ -77,12 +77,12 @@ export default function Header() {
 
       {menuOpen && (
         <div id="mobileNav" className="md:hidden bg-white dark:bg-black border-t border-gray-200 dark:border-gray-800 px-6 py-4 space-y-3 font-medium">
-          <a href="/" className="block hover:text-[#03e312] transition">Home</a>
-          <a href="/berita" className="block hover:text-[#03e312] transition">Berita</a>
-          <a href="#" className="block hover:text-[#03e312] transition">Opini</a>
-          <a href="/redaksi" className="block hover:text-[#03e312] transition">Redaksi</a>
-          <a href="#" className="block hover:text-[#03e312] transition">Kampus</a>
-          <a href="/kontak" className="block hover:text-[#03e312] transition">Kontak</a>
+          <a href="/" className="block hover:text-[#167c48] transition">Home</a>
+          <a href="/berita" className="block hover:text-[#167c48] transition">Berita</a>
+          <a href="/berita?kategori=opini" className="block hover:text-[#167c48] transition">Opini</a>
+          <a href="/redaksi" className="block hover:text-[#167c48] transition">Redaksi</a>
+          <a href="/berita?kategori=kampus" className="block hover:text-[#167c48] transition">Kampus</a>
+          <a href="/kontak" className="block hover:text-[#167c48] transition">Kontak</a>
         </div>
       )}
     </header>

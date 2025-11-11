@@ -2,17 +2,21 @@ import React, { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
 import { Link } from "react-router-dom";
 
-
 export default function NewsSection() {
-  const [beritaKampus, setBeritaKampus] = useState([]);
+  const [beritaOpini, setBeritaOpini] = useState([]);
   const [beritaTerbaru, setBeritaTerbaru] = useState([]);
   const [categories, setCategories] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchCategories();
-    fetchNews();
   }, []);
+
+  useEffect(() => {
+    if (Object.keys(categories).length > 0) {
+      fetchNews();
+    }
+  }, [categories]);
 
   async function fetchCategories() {
     const { data, error } = await supabase.from("kategori").select("id, name");
@@ -34,10 +38,16 @@ export default function NewsSection() {
 
     if (error) {
       console.error("Gagal memuat berita:", error.message);
-    } else {
-      setBeritaKampus(data.slice(0, 6));
-      setBeritaTerbaru(data.slice(6, 10)); // misalnya ambil 4 berita berikutnya
+      return;
     }
+
+    const opiniOnly = data.filter(
+      (item) =>
+        categories[item.category_id]?.toLowerCase() === "opini"
+    );
+
+    setBeritaOpini(opiniOnly.slice(0, 6)); 
+    setBeritaTerbaru(data.slice(0, 6)); 
     setLoading(false);
   }
 
@@ -51,27 +61,28 @@ export default function NewsSection() {
 
   return (
     <div>
+      {/* BERITA OPINI */}
       <section className="mt-10">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg md:text-xl font-bold tracking-wide text-black dark:text-white uppercase">
-            Berita Kampus
+            Berita Opini
           </h2>
           <Link
-            to="/berita"
-            className="text-[#03e312] text-sm font-medium hover:text-[#02c10f] transition duration-300"
+            to="/berita?kategori=opini"
+            className="text-[#167c48] text-sm font-medium hover:text-[#03e312] transition-all duration-300"
           >
             View All
           </Link>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {beritaKampus.length === 0 ? (
-            <p className="text-gray-500">Belum ada berita kampus.</p>
+          {beritaOpini.length === 0 ? (
+            <p className="text-gray-500">Belum ada berita opini.</p>
           ) : (
-            beritaKampus.map((item) => (
-              <a
+            beritaOpini.map((item) => (
+              <Link
                 key={item.id}
-                href={`/berita/${item.id}`}
+                to={`/berita/${item.id}`}
                 className="group block bg-white dark:bg-black rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 hover:shadow-md transition-all duration-300 overflow-hidden"
               >
                 <div className="overflow-hidden">
@@ -82,19 +93,19 @@ export default function NewsSection() {
                   />
                 </div>
                 <div className="p-4">
-                  <span className="bg-[#03e312] text-white text-xs px-2 py-1 rounded mb-2 inline-block">
+                  <span className="bg-[#167c48] text-white text-xs px-2 py-1 rounded mb-2 inline-block">
                     {getKategoriName(item.category_id)}
                   </span>
-                  <h3 className="text-base font-semibold leading-snug text-black dark:text-white group-hover:text-[#03e312] transition-colors duration-300">
+                  <h3 className="text-base font-semibold leading-snug text-black dark:text-white group-hover:text-[#167c48] transition-colors duration-300">
                     {item.title}
                   </h3>
                   <div className="flex items-center mt-3 text-xs text-gray-600 dark:text-gray-300 gap-4">
                     <span className="flex items-center gap-1">
-                      <i className="ri-user-line text-[#03e312]"></i>{" "}
+                      <i className="ri-user-line text-[#167c48]"></i>{" "}
                       {item.author || "Redaksi"}
                     </span>
                     <span className="flex items-center gap-1">
-                      <i className="ri-calendar-line text-[#03e312]"></i>{" "}
+                      <i className="ri-calendar-line text-[#167c48]"></i>{" "}
                       {new Date(item.created_at).toLocaleDateString("id-ID", {
                         day: "2-digit",
                         month: "short",
@@ -103,12 +114,13 @@ export default function NewsSection() {
                     </span>
                   </div>
                 </div>
-              </a>
+              </Link>
             ))
           )}
         </div>
       </section>
 
+      {/* BERITA TERBARU */}
       <section className="mt-8">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg md:text-xl font-bold tracking-wide text-black dark:text-white uppercase">
@@ -116,7 +128,7 @@ export default function NewsSection() {
           </h2>
           <Link
             to="/berita"
-            className="text-[#03e312] text-sm font-medium hover:text-[#02c10f] transition duration-300"
+            className="text-[#167c48] text-sm font-medium hover:text-[#03e312] transition-all duration-300"
           >
             View All
           </Link>
@@ -127,9 +139,9 @@ export default function NewsSection() {
             <p className="text-gray-500">Belum ada berita terbaru.</p>
           ) : (
             beritaTerbaru.map((item) => (
-              <a
+              <Link
                 key={item.id}
-                href={`/berita/${item.id}`}
+                to={`/berita/${item.id}`}
                 className="group block bg-white dark:bg-black rounded-xl shadow hover:shadow-md transition p-4"
               >
                 <div className="aspect-[16/9] overflow-hidden rounded-lg mb-3">
@@ -139,10 +151,10 @@ export default function NewsSection() {
                     alt={item.title}
                   />
                 </div>
-                <span className="bg-[#03e312] text-white text-xs px-2 py-1 rounded">
+                <span className="bg-[#167c48] text-white text-xs px-2 py-1 rounded">
                   {getKategoriName(item.category_id)}
                 </span>
-                <h3 className="font-bold text-lg mt-2 text-black dark:text-white group-hover:text-[#03e312] transition-colors duration-300">
+                <h3 className="font-bold text-lg mt-2 text-black dark:text-white group-hover:text-[#167c48] transition-colors duration-300">
                   {item.title}
                 </h3>
                 <p className="text-gray-700 dark:text-gray-300 text-sm mt-2 line-clamp-2">
@@ -150,11 +162,11 @@ export default function NewsSection() {
                 </p>
                 <div className="flex items-center text-xs text-gray-600 dark:text-gray-400 mt-3 gap-4">
                   <span className="flex items-center gap-1">
-                    <i className="ri-user-line text-[#03e312]"></i>{" "}
+                    <i className="ri-user-line text-[#167c48]"></i>{" "}
                     {item.author || "Redaksi"}
                   </span>
                   <span className="flex items-center gap-1">
-                    <i className="ri-calendar-line text-[#03e312]"></i>{" "}
+                    <i className="ri-calendar-line text-[#167c48]"></i>{" "}
                     {new Date(item.created_at).toLocaleDateString("id-ID", {
                       day: "2-digit",
                       month: "short",
@@ -162,7 +174,7 @@ export default function NewsSection() {
                     })}
                   </span>
                 </div>
-              </a>
+              </Link>
             ))
           )}
         </div>

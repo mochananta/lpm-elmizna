@@ -69,16 +69,16 @@ export default function HeroSlider() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6">
                 <div className="text-white">
-                  <span className="bg-[#03e312] text-xs font-semibold uppercase px-2 py-1 rounded">
+                  <span className="bg-[#167c48] text-xs font-semibold uppercase px-2 py-1 rounded">
                     {getKategoriName(s.category_id)}
                   </span>
                   <h2 className="text-2xl md:text-3xl font-bold mt-3 leading-tight">
                     {s.title}
                   </h2>
                   <div className="flex items-center gap-2 text-sm text-white mt-2">
-                    <i className="ri-user-line text-[#03e312]"></i>
+                    <i className="ri-user-line text-[#167c48]"></i>
                     <span className="opacity-90">{s.author}</span>
-                    <i className="ri-calendar-line text-[#03e312] ml-3"></i>
+                    <i className="ri-calendar-line text-[#167c48] ml-3"></i>
                     <span className="opacity-90">
                       {new Date(s.created_at).toLocaleDateString("id-ID", {
                         day: "2-digit",
@@ -100,7 +100,7 @@ export default function HeroSlider() {
                 key={i}
                 onClick={() => setActive(i)}
                 className={`cursor-pointer w-3 h-3 rounded-full ${
-                  i === active ? "bg-[#03e312]" : "bg-gray-400"
+                  i === active ? "bg-[#167c48]" : "bg-gray-400"
                 }`}
               />
             ))}
@@ -126,15 +126,15 @@ export default function HeroSlider() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-5">
                 <div className="text-white">
-                  <span className="bg-[#03e312] text-xs font-semibold uppercase px-2 py-1 rounded">
+                  <span className="bg-[#167c48] text-xs font-semibold uppercase px-2 py-1 rounded">
                     {getKategoriName(p.category_id)}
                   </span>
                   <h3 className="font-bold text-lg mt-2 leading-snug">
                     {p.title}
                   </h3>
                   <div className="flex items-center gap-2 text-xs text-gray-200 mt-1">
-                    <i className="ri-user-line text-[#03e312]"></i> {p.author}
-                    <i className="ri-calendar-line text-[#03e312] ml-2"></i>{" "}
+                    <i className="ri-user-line text-[#167c48]"></i> {p.author}
+                    <i className="ri-calendar-line text-[#167c48] ml-2"></i>{" "}
                     {new Date(p.created_at).toLocaleDateString("id-ID", {
                       day: "2-digit",
                       month: "short",

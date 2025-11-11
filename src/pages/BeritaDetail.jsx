@@ -91,7 +91,7 @@ export default function BeritaDetail() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
         <div className="absolute bottom-10 left-6 md:left-16 text-white max-w-3xl">
-          <span className="bg-[#03e312] text-xs uppercase px-3 py-1 rounded-full">
+          <span className="bg-[#167c48] text-xs uppercase px-3 py-1 rounded-full">
             {berita.kategori?.name}
           </span>
           <h1 className="text-3xl md:text-5xl font-bold mt-4 leading-snug">
@@ -99,10 +99,10 @@ export default function BeritaDetail() {
           </h1>
           <div className="flex items-center gap-4 text-sm text-gray-200 mt-3">
             <span className="flex items-center gap-1">
-              <i className="ri-user-line text-[#03e312]"></i> {berita.author}
+              <i className="ri-user-line text-[#167c48]"></i> {berita.author}
             </span>
             <span className="flex items-center gap-1">
-              <i className="ri-calendar-line text-[#03e312]"></i>{" "}
+              <i className="ri-calendar-line text-[#167c48]"></i>{" "}
               {new Date(berita.created_at).toLocaleDateString("id-ID", {
                 day: "2-digit",
                 month: "short",
@@ -110,7 +110,7 @@ export default function BeritaDetail() {
               })}
             </span>
             <span className="flex items-center gap-1">
-              <i className="ri-eye-line text-[#03e312]"></i>{" "}
+              <i className="ri-eye-line text-[#167c48]"></i>{" "}
               {berita.view_count || 0}x view
             </span>
           </div>
@@ -142,18 +142,18 @@ export default function BeritaDetail() {
                       className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="p-4">
-                      <h4 className="font-semibold text-black dark:text-white group-hover:text-[#03e312] transition-colors">
+                      <h4 className="font-semibold text-black dark:text-white group-hover:text-[#167c48] transition-colors">
                         {item.title.length > 80
                           ? item.title.slice(0, 80) + "..."
                           : item.title}
                       </h4>
                       <div className="flex items-center text-xs text-gray-500 mt-2 gap-3">
                         <span className="flex items-center gap-1">
-                          <i className="ri-user-line text-[#03e312]"></i>{" "}
+                          <i className="ri-user-line text-[#167c48]"></i>{" "}
                           {item.author}
                         </span>
                         <span className="flex items-center gap-1">
-                          <i className="ri-calendar-line text-[#03e312]"></i>{" "}
+                          <i className="ri-calendar-line text-[#167c48]"></i>{" "}
                           {new Date(item.created_at).toLocaleDateString(
                             "id-ID",
                             {

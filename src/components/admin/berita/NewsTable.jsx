@@ -23,7 +23,7 @@ export default function NewsTable({ data, onRefresh }) {
 
   return (
     <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
-      <h2 className="text-xl font-bold mb-4 text-[#03e312]">Daftar Berita</h2>
+      <h2 className="text-xl font-bold mb-4 text-[#167c48]">Daftar Berita</h2>
       <table className="w-full text-sm border-collapse">
         <thead>
           <tr className="bg-gray-200 dark:bg-gray-700 text-left">

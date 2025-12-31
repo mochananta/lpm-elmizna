@@ -46,8 +46,8 @@ export default function NewsSection() {
         categories[item.category_id]?.toLowerCase() === "opini"
     );
 
-    setBeritaOpini(opiniOnly.slice(0, 6)); 
-    setBeritaTerbaru(data.slice(0, 6)); 
+    setBeritaOpini(opiniOnly.slice(0, 6));
+    setBeritaTerbaru(data.slice(0, 6));
     setLoading(false);
   }
 
@@ -158,7 +158,9 @@ export default function NewsSection() {
                   {item.title}
                 </h3>
                 <p className="text-gray-700 dark:text-gray-300 text-sm mt-2 line-clamp-2">
-                  {item.content || "Belum ada deskripsi."}
+                  {item.content
+                    ? item.content.replace(/<[^>]+>/g, "")
+                    : "Belum ada deskripsi."}
                 </p>
                 <div className="flex items-center text-xs text-gray-600 dark:text-gray-400 mt-3 gap-4">
                   <span className="flex items-center gap-1">

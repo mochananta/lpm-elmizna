@@ -54,9 +54,16 @@ export default function NewsForm({ onRefresh }) {
       imageUrl = await uploadImage(imageFile);
     }
 
+    const formattedContent = form.content
+      .split("\n")
+      .filter(line => line.trim() !== "")
+      .map(line => `<p>${line}</p>`)
+      .join("");
+
     const { error } = await supabase.from("berita").insert([
       {
         ...form,
+        content: formattedContent,
         image_url: imageUrl,
       },
     ]);
@@ -115,18 +122,35 @@ export default function NewsForm({ onRefresh }) {
         <input
           type="file"
           accept="image/*"
-          className="border p-2 rounded bg-gray-50 dark:bg-gray-700"
+          className="border p-2 rounded bg-gray-50 dark:bg-gray-700 w-full"
           onChange={(e) => setImageFile(e.target.files[0])}
         />
+        <p className="text-xs text-gray-500 mt-1">
+          Rekomendasi: gambar landscape rasio <b>16:9</b> (contoh: <b>1920×1080 px</b>)
+        </p>
       </div>
 
       <textarea
         placeholder="Isi berita..."
         className="w-full border p-2 rounded mt-4 bg-gray-50 dark:bg-gray-700"
-        rows="5"
+        rows="6"
         value={form.content}
         onChange={(e) => setForm({ ...form, content: e.target.value })}
-      ></textarea>
+      />
+
+      <p className="text-xs text-gray-500 mt-2 leading-relaxed">
+        Gunakan <b>Enter 1×</b> untuk membuat paragraf baru.
+        <br />
+        <span className="italic">
+          Contoh:
+          <br />
+          Lorem ipsum dolor sit amet consectetur adipis Quisque faucibus.
+          <br />
+          Lorem ipsum dolor sit amet consectetur adipiscing elit.<br />
+          Lorem ipsum dolor sit amet consectetur adipis Quisque faucibus.
+          <br />
+        </span>
+      </p>
 
       <button
         type="submit"
